@@ -1,6 +1,17 @@
-// src/components/Storage.js
-// Componente para subir archivos a Firebase Storage
-// Utiliza componentes de clase, eventos, estado y servicios cloud (Firebase)
+// ---------------------------------------------------------
+// Componente: Storage.js
+// Descripción general:
+// Este componente corresponde al Ejercicio 3 de la evaluación.
+// Permite seleccionar un archivo desde el dispositivo del usuario
+// y subirlo a Firebase Storage utilizando un componente de clase.
+//
+// Este archivo demuestra:
+//  - Manejo de estado con this.state
+//  - Lectura de archivos desde un input tipo file
+//  - Interacción con servicios cloud (Firebase Storage)
+//  - Seguimiento del progreso de carga en tiempo real
+//  - Obtención de la URL pública del archivo subido
+// ---------------------------------------------------------
 
 import React, { Component } from 'react';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
@@ -10,40 +21,60 @@ class Storage extends Component {
   constructor(props) {
     super(props);
 
-    // Estado inicial del componente
+    // -----------------------------------------------------
+    // Estado inicial del componente:
+    // file       → archivo seleccionado por el usuario
+    // progreso   → porcentaje de subida del archivo
+    // urlArchivo → link de descarga una vez completada la carga
+    // -----------------------------------------------------
     this.state = {
-      file: null,       // Archivo seleccionado por el usuario
-      progreso: 0,      // Porcentaje de subida
-      urlArchivo: ''    // URL final del archivo subido
+      file: null,
+      progreso: 0,
+      urlArchivo: ''
     };
   }
 
-  // Maneja el archivo seleccionado por el usuario
+  // -------------------------------------------------------
+  // manejarArchivo:
+  // Se ejecuta cuando el usuario selecciona un archivo.
+  // Guarda el archivo dentro del estado para luego subirlo.
+  // -------------------------------------------------------
   manejarArchivo = (e) => {
     if (e.target.files[0]) {
       this.setState({ file: e.target.files[0] });
     }
   }
 
-  // Función principal que realiza la subida del archivo a Firebase Storage
+  // -------------------------------------------------------
+  // subirArchivo:
+  // Función principal que realiza la subida del archivo.
+  // Usa 'uploadBytesResumable' para obtener el progreso
+  // y manejar distintos estados del proceso.
+  // -------------------------------------------------------
   subirArchivo = () => {
     const { file } = this.state;
 
-    // Validación básica
+    // Validación simple: asegurarse de que haya un archivo seleccionado
     if (!file) {
       alert("Selecciona un archivo primero");
       return;
     }
 
-    // Creamos la referencia dentro de Storage (carpeta 'archivos/')
+    // Creamos una referencia dentro de Firebase Storage
+    // El archivo quedará almacenado en la carpeta "archivos/"
     const storageRef = ref(storage, `archivos/${file.name}`);
 
-    // Subida con seguimiento de progreso
+    // Inicio de la subida con seguimiento del progreso
     const uploadTask = uploadBytesResumable(storageRef, file);
 
-    // Observador del progreso de subida
+    // ---------------------------------------------------
+    // uploadTask.on() escucha el avance de la subida
+    // Tiene tres posibles respuestas: progreso, error, éxito
+    // ---------------------------------------------------
     uploadTask.on(
-      'state_changed',
+      "state_changed",
+
+      // PROGRESO: se actualiza en tiempo real
       (snapshot) => {
         const progreso = Math.round(
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100
@@ -51,13 +82,13 @@ class Storage extends Component {
         this.setState({ progreso });
       },
 
-      // Manejo de errores durante la subida
+      // ERROR: en caso de fallar la subida
       (error) => {
         console.error("Error al subir archivo:", error);
         alert("Error al subir archivo: " + error.message);
       },
 
-      // Cuando la subida termina con éxito
+      // ÉXITO: cuando termina la carga se obtiene la URL pública
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((url) => {
           this.setState({ urlArchivo: url });
@@ -67,6 +98,11 @@ class Storage extends Component {
     );
   }
 
+  // -------------------------------------------------------
+  // render:
+  // Muestra el input para seleccionar archivo, el botón para
+  // subirlo, el porcentaje de progreso y el enlace final.
+  // -------------------------------------------------------
   render() {
     const { progreso, urlArchivo } = this.state;
 
@@ -90,10 +126,10 @@ class Storage extends Component {
           Subir Archivo
         </button>
 
-        {/* Muestra del progreso de subida */}
+        {/* Muestra del progreso */}
         {progreso > 0 && <div className="mb-2">Progreso: {progreso}%</div>}
 
-        {/* Link para ver el archivo subido */}
+        {/* URL de descarga del archivo */}
         {urlArchivo && (
           <div>
             <a

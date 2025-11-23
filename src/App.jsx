@@ -6,34 +6,54 @@ import Storage from './components/Storage';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-/* 
-  Componente principal de la aplicación.
-  Aquí se muestran los 3 ejercicios pedidos en el examen:
-  Cada ejercicio está separado por secciones para mantener orden y claridad.
-*/
+/* ---------------------------------------------------------
+   Componente principal de la aplicación (App.js)
+   ---------------------------------------------------------
+   Este archivo sirve como punto central donde se muestran 
+   los tres ejercicios solicitados en la evaluación.
+
+   • Ejercicio 1 → Lista de productos y carrito (componentes de clase,
+     props, estado y callbacks).
+
+   • Ejercicio 2 → Formulario con validación mediante
+     "simple-react-validator" y guardado en Firebase Firestore.
+
+   • Ejercicio 3 → Autenticación con Firebase Auth y subida de archivos
+     con Firebase Storage, ambos implementados usando componentes de clase.
+
+   Cada sección está claramente separada para facilitar la lectura,
+   revisión y demostración de los distintos requerimientos del examen.
+--------------------------------------------------------- */
 
 function App() {
   return (
     <div className="App container my-5">
 
-      {/* Título general del proyecto */}
+      {/* Título principal del proyecto */}
       <h1 className="text-center mb-5">Proyecto Examen</h1>
 
-    
-      {/* EJ:N°1. Sección donde se muestra el componente que lista productos 
-          y permite agregarlos y eliminarlos del carrito */}
+      {/* ---------------------------------------------------
+           EJERCICIO 1:
+           Lista de productos + carrito dinámico
+         --------------------------------------------------- */}
       <section className="mb-5">
         <h2 className="mb-3">Ejercicio 1</h2>
         <ListaProductos />
       </section>
 
-      {/*EJ:N°2. Sección del formulario con validación y guardado en Firebase */}
+      {/* ---------------------------------------------------
+           EJERCICIO 2:
+           Formulario con validación y guardado en Firestore
+         --------------------------------------------------- */}
       <section className="mb-5">
         <h2 className="mb-3">Formulario Ejercicio 2</h2>
         <Formulario />
       </section>
 
-      {/* EJ:N°3. Sección donde se muestran los componentes de autenticación y storage */}
+      {/* ---------------------------------------------------
+           EJERCICIO 3:
+           Firebase Auth + Firebase Storage
+         --------------------------------------------------- */}
       <section className="mb-5">
         <h2 className="mb-3 text-center">Firebase</h2>
 
@@ -47,7 +67,7 @@ function App() {
             </div>
           </div>
 
-          {/* Subida de archivos a Firebase Storage */}
+          {/* Subida de archivos con Firebase Storage */}
           <div className="col-md-6 d-flex justify-content-center">
             <div className="w-100">
               <h4 className="text-center mb-3">Subida de Archivos</h4>
@@ -57,6 +77,7 @@ function App() {
 
         </div>
       </section>
+
     </div>
   );
 }

@@ -1,16 +1,90 @@
-# React + Vite
+ Desarrollo Examen Programacion de Componentes
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+El proyecto se organizó en una carpeta principal llamada components, donde se desarrollaron todos los ejercicios solicitados en la evaluación utilizando React con componentes de clase. Para asegurar orden y claridad, cada funcionalidad fue implementada en un componente independiente.
 
-Currently, two official plugins are available:
+Ejercicio 1 — Lista de Productos y Carrito
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Para este ejercicio se implementaron los componentes:
 
-## React Compiler
+ListaProductos.js (componente padre)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+ProductoItem.js (componente hijo)
 
-## Expanding the ESLint configuration
+La lógica principal está basada en:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Manejo de estado con this.state
+
+Actualización dinámica de datos con this.setState
+
+Comunicación entre componentes padre ↔ hijo usando props y callbacks
+
+En el componente ListaProductos.js, se definió un arreglo de productos y un carrito. Al hacer clic en "Agregar al carrito", el componente hijo ejecuta una función recibida por props, y esta agrega el producto al estado del componente padre.
+También se implementó la opción de eliminar elementos individualmente desde el carrito, cumpliendo con los requisitos de interacción dinámica.
+
+Ejercicio 2 — Formulario con Validación y Firestore
+
+Para este ejercicio se desarrolló el componente:
+
+Formulario.js
+
+Este formulario utiliza this.state para manejar los valores ingresados y aplica validaciones mediante la librería simple-react-validator, permitiendo:
+
+Mostrar mensajes personalizados cuando un campo está vacío.
+
+Validar que el email tenga un formato correcto.
+
+Evitar envíos con datos incompletos.
+
+Al enviar el formulario correctamente, los datos se almacenan en una colección de Firebase Firestore, cumpliendo con el requisito de persistencia en la nube.
+Después de guardar, el formulario se reinicia automáticamente para permitir un nuevo ingreso.
+
+🟩 Ejercicio 3 — Firebase Auth + Firebase Storage
+
+Este ejercicio consta de dos componentes:
+
+Auth.js — Autenticación
+
+Permite:
+
+Iniciar sesión con correo y contraseña.
+
+Gestionar el estado del usuario dentro del componente.
+
+Mostrar diferentes vistas según el estado de autenticación.
+
+Se utilizó Firebase Auth, cumpliendo con el requerimiento de integrar autenticación real en la aplicación.
+
+Storage.js — Subida de archivos
+
+Permite:
+
+Seleccionar un archivo desde el dispositivo.
+
+Ver el progreso de carga en tiempo real.
+
+Obtener la URL de descarga cuando el archivo llega al servidor.
+
+Aunque la lógica está funcionando correctamente, el grupo detectó un problema de CORS en Firebase Storage, por lo que esta parte queda pendiente de ajuste en el entorno final. La implementación está correctamente desarrollada desde React.
+____________________________________________________________________________
+
+Exportación a Cordova (pendiente para revisar y confirmar)
+
+
+Configurar el entorno Cordova.
+
+Integrar la app resultante de React.
+
+Generar el archivo APK.
+
+Grabar el video explicativo.
+
+Verificar la operación de los componentes dentro de la app móvil.
+
+La estructura del proyecto ya está preparada para ser empaquetada.
+
+El resultado es un proyecto modular, claro y funcional, donde cada ejercicio cumple las condiciones solicitadas con React y Firebase.
+
+Integrantes:
+-Daniela Fuentes Escobar
+-Stefy
+-Joaquin
