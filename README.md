@@ -89,7 +89,7 @@ Después de guardar, el formulario se reinicia automáticamente para permitir un
 
 ----------------------------------------------
 
-🟩 Ejercicio 3 — Firebase Auth + Firebase Storage
+Ejercicio 3 — Firebase Auth + Firebase Storage
 
 Este ejercicio consta de dos componentes:
 
