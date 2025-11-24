@@ -148,5 +148,5 @@ El resultado es un proyecto modular, claro y funcional, donde cada ejercicio cum
 
 Integrantes:
 -Daniela Fuentes Escobar
--Stefy
--Joaquin
+-Stephanie Lazo Cornejo
+-Joaquin Villalon Muñoz
