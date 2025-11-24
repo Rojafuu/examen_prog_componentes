@@ -2,6 +2,53 @@
 
 El proyecto se organizó en una carpeta principal llamada components, donde se desarrollaron todos los ejercicios solicitados en la evaluación utilizando React con componentes de clase. Para asegurar orden y claridad, cada funcionalidad fue implementada en un componente independiente.
 
+----------------------------------------------
+
+Requisitos e Instalación del Proyecto
+
+Para ejecutar el proyecto en entorno local se requiere:
+
+Node.js 16+
+
+npm o yarn
+
+Configuración de Firebase (credenciales del proyecto en archivo de inicialización)
+
+(Opcional) Cordova instalado globalmente para el empaquetado móvil
+
+$ npm install -g cordova
+
+----------------------------------------------
+
+Instalación
+
+Clonar el repositorio:
+
+$ git clone https://github.com/Rojafuu/examen_prog_componentes.git
+
+
+Ingresar a la carpeta del proyecto (donde está el React principal):
+
+$ cd examen_prog_componentes
+
+
+Instalar dependencias:
+
+$ npm install
+
+
+Crear o verificar el archivo de configuración de Firebase (por ejemplo: firebaseConfig.js dentro de src/config) con las credenciales entregadas por Firebase Console.
+
+Ejecutar el proyecto:
+
+$ npm start
+
+
+La aplicación se ejecutará en http://localhost:3000/.
+
+----------------------------------------------
+
+
 Ejercicio 1 — Lista de Productos y Carrito
 
 Para este ejercicio se implementaron los componentes:
@@ -21,6 +68,8 @@ Comunicación entre componentes padre ↔ hijo usando props y callbacks
 En el componente ListaProductos.js, se definió un arreglo de productos y un carrito. Al hacer clic en "Agregar al carrito", el componente hijo ejecuta una función recibida por props, y esta agrega el producto al estado del componente padre.
 También se implementó la opción de eliminar elementos individualmente desde el carrito, cumpliendo con los requisitos de interacción dinámica.
 
+----------------------------------------------
+
 Ejercicio 2 — Formulario con Validación y Firestore
 
 Para este ejercicio se desarrolló el componente:
@@ -37,6 +86,8 @@ Evitar envíos con datos incompletos.
 
 Al enviar el formulario correctamente, los datos se almacenan en una colección de Firebase Firestore, cumpliendo con el requisito de persistencia en la nube.
 Después de guardar, el formulario se reinicia automáticamente para permitir un nuevo ingreso.
+
+----------------------------------------------
 
 🟩 Ejercicio 3 — Firebase Auth + Firebase Storage
 
@@ -65,22 +116,33 @@ Ver el progreso de carga en tiempo real.
 Obtener la URL de descarga cuando el archivo llega al servidor.
 
 Aunque la lógica está funcionando correctamente, el grupo detectó un problema de CORS en Firebase Storage, por lo que esta parte queda pendiente de ajuste en el entorno final. La implementación está correctamente desarrollada desde React.
-____________________________________________________________________________
 
-Exportación a Cordova (pendiente para revisar y confirmar)
+----------------------------------------------
+
+Exportación a Cordova
+
+La aplicación está preparada para empaquetarse como aplicación móvil mediante Cordova.
+
+Tareas consideradas:
+
+Configurar entorno Cordova.
+
+Integrar la carpeta build generada por React en cordova/www.
+
+Construir APK:
+
+$ cordova build android
 
 
-Configurar el entorno Cordova.
+Firma del APK mediante keystore.
 
-Integrar la app resultante de React.
+Generación del archivo final .apk.
 
-Generar el archivo APK.
+Pruebas en dispositivo real.
 
-Grabar el video explicativo.
+Grabación del video explicativo solicitado por la evaluación.
 
-Verificar la operación de los componentes dentro de la app móvil.
-
-La estructura del proyecto ya está preparada para ser empaquetada.
+La estructura del proyecto permite el empaquetado sin modificaciones adicionales
 
 El resultado es un proyecto modular, claro y funcional, donde cada ejercicio cumple las condiciones solicitadas con React y Firebase.
 
